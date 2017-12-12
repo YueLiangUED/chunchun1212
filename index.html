@@ -23,11 +23,17 @@
             var myScroll;
 
             function loaded () {
-                myScroll = new IScroll('#friendList', {
-                    mouseWheel: true,
-                    scrollbars: 'custom',
-                    interactiveScrollbars: true
+                $('.rule-title').on('click', function () {
+                    if ($(this).hasClass('act')) {
+                        $('.rule-text').slideUp('fast');
+                        $(this).removeClass('act')
+                    } else {
+                        $('.rule-text').slideDown('fast');
+                        $(this).addClass('act')
+                    }
+                    
                 });
+                
             }
 
             // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
@@ -172,7 +178,7 @@
                     <a class="btn_05 fr" href=""></a>
                 </div>
                 <div id="friendList" class="friend-list">
-                    <div>
+                    <div class="friend-list-box" style="position: absolute;">
                         <p><i></i>xxxxxx帮我拆了100元，获得1年语音信箱免费体验，大吉大利，年年有余～</p>
                         <p><i></i>xxxxxx帮我拆了100元，获得1年语音信箱免费体验，大吉大利，年年有余～</p>
                         <p><i></i>xxxxxx帮我拆了100元，获得1年语音信箱免费体验，大吉大利，年年有余～</p>
@@ -204,8 +210,8 @@
         <div style="height: 17px;background-color: #4b0700"></div>
         <div style="background: #d0081d;padding-top: 16px;overflow: hidden;padding-bottom: 30px;">
             <div class="page-footer"></div>
-            <div class="rule-title"><span>活动规则</span></div>
-            <div class="rule-text">
+            <div class="rule-title"><span>活动规则<i></i></span></div>
+            <div class="rule-text" style="display: none;">
                 <p>1、活动时间：2018年2月8日至2018年2月22日，本活动仅限北京移动用户参与。</p>
                 <p>2、活动期间每天10:00、14:00、20:00起开始秒杀，按日进行限量，抢完为止。若当日有剩余量则到当天23:59归零，次日重新开始计数。该优惠为移动宽带新装用户专享，经工作人员核实后，若用户抢购号码已绑定移动宽带账号则无法享受折扣优惠资格。</p>
                 <p>3、活动期间每天10:00提供30M、14:00提供50M、20:00提供100M各100笔只办宽带(单宽带)一年期1折优惠资格，该抢购仅是秒杀资格抢购，最终能否享受该优惠以实际安装结果为准，实际地址未覆盖或其他原因无法安装则该折扣优惠自动取消。用户在电子渠道提交预报装订单成功，记为获得优惠资格。该资格仅限本人使用，不可转赠。</p>
@@ -220,5 +226,33 @@
                 <p>13、本活动最终解释权归北京移动所有，如有疑问可致电10086资讯。</p>
             </div>
         </div>
+        <script type="text/javascript">
+            var friendList = $('.friend-list-box').height();
+            var friendListH = $('.friend-list').height();
+                $('.friend-list-box').animate({
+                    top: friendListH-friendList
+                },{
+                    duration: 10000,
+                    easing: 'linear',
+                    complete: function(){
+                        $('.friend-list-box').css({
+                            'top': 0
+                        });
+                    }
+                });
+                setInterval(function () {
+                    $('.friend-list-box').animate({
+                    top: friendListH-friendList
+                    },{
+                    duration: 10000,
+                    easing: 'linear',
+                    complete: function(){
+                        $('.friend-list-box').css({
+                            'top': 0
+                        });
+                    }
+                    });
+                }, 10000)
+        </script>
     </body>
 </html>

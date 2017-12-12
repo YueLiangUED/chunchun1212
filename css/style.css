@@ -318,3 +318,8 @@ body {
 .rule-text p {
   margin-bottom: 10px;
 }
+.rule-title.act i {
+  -ms-transform:rotate(-180deg); /* IE 9 */
+  -webkit-transform: rotate(-180deg); /* Safari */
+  transform: rotate(-180deg); /* 标准语法 */
+}
